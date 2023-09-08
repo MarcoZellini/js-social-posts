@@ -91,21 +91,23 @@ const feedContainer = document.querySelector('.row');
 pageRefresh(feedContainer, posts, likedPostList);
 
 /**
- * 
+ * ### pageRefresh
+ * > This function refresh the page
  * @param {*} feedContainer 
  * @param {*} feedList 
  */
 function pageRefresh(feedContainer, feedList, likedPostList) {
-    feedGenerator(feedContainer, feedList)
+    feedGenerator(feedContainer, feedList);
     const likeButtonList = document.querySelectorAll('.like-button > a.btn');
-    addLike(likeButtonList, feedList, likedPostList);
+    toggleLike(likeButtonList, feedList, likedPostList);
 }
 
 /**
- * 
+ * ### toggleLike
+ * > This function toggle like to the post
  * @param {*} likeButtonList 
  */
-function addLike(likeButtonList, feedList, likedPostList) {
+function toggleLike(likeButtonList, feedList, likedPostList) {
 
     likeButtonList.forEach(likeButton => {
         likeButton.addEventListener('click', function (e) {
@@ -115,12 +117,12 @@ function addLike(likeButtonList, feedList, likedPostList) {
                 if (feed.id === Number(this.dataset.postid) && feed.liked != true) {
                     feed.likes++;
                     feed.liked = true;
-                    likedPostList.push(feed.id)
+                    likedPostList.push(feed.id);
                     pageRefresh(feedContainer, feedList, likedPostList);
                 } else if (feed.id === Number(this.dataset.postid) && feed.liked) {
                     feed.likes--;
                     feed.liked = false;
-                    likedPostList.pop(feed.id)
+                    likedPostList.pop(feed.id);
                     pageRefresh(feedContainer, feedList, likedPostList);
                 }
             });
@@ -157,7 +159,7 @@ function feedGenerator(DOMElement, feedList) {
                             </div>
                             <!-- /.author -->
                             <div class="creation-date">
-                                ${feed.created}
+                                ${formatDate(feed.created)}
                             </div>
                             <!-- /.creation-date -->
                         </div>
@@ -201,8 +203,17 @@ function feedGenerator(DOMElement, feedList) {
             </div>
             <!-- .col -->
         `;
-
         DOMElement.insertAdjacentHTML('beforeend', markup);
-    })
+    });
 }
 
+/**
+ * ### formatDate
+ * > This function take a date and returns it in the italian format
+ * @param {string} stringDate 
+ * @returns {string} A string with the date in the italian format
+ */
+function formatDate(stringDate) {
+    const date = new Date(stringDate);
+    return `${date.getDay()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+}
