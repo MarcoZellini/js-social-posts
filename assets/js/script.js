@@ -31,7 +31,7 @@ const posts = [
     {
         "id": 1,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/300?image=171",
+        "media": "https://unsplash.it/1000/600?image=171",
         "author": {
             "name": "Phil Mangione",
             "image": "https://unsplash.it/300/300?image=15"
@@ -42,7 +42,7 @@ const posts = [
     {
         "id": 2,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/400?image=112",
+        "media": "https://unsplash.it/1000/600?image=112",
         "author": {
             "name": "Sofia Perlari",
             "image": "https://unsplash.it/300/300?image=10"
@@ -53,7 +53,7 @@ const posts = [
     {
         "id": 3,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/400?image=234",
+        "media": "https://unsplash.it/1000/600?image=234",
         "author": {
             "name": "Chiara Passaro",
             "image": "https://unsplash.it/300/300?image=20"
@@ -64,7 +64,7 @@ const posts = [
     {
         "id": 4,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/400?image=24",
+        "media": "https://unsplash.it/1000/600?image=24",
         "author": {
             "name": "Luca Formicola",
             "image": null
@@ -75,7 +75,7 @@ const posts = [
     {
         "id": 5,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/400?image=534",
+        "media": "https://unsplash.it/1000/600?image=534",
         "author": {
             "name": "Alessandro Sainato",
             "image": "https://unsplash.it/300/300?image=29"
@@ -84,3 +84,86 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+
+const feedContainer = document.querySelector('.row');
+
+feedGenerator(feedContainer, posts)
+
+
+
+/**
+ * ### feedGenerator
+ * > This function creates DOM Elements from a feedList. 
+ * @param {Object} DOMElement Element where to add the markup
+ * @param {Object[]} FeedList List of Social Feeds
+ */
+function feedGenerator(DOMElement, feedList) {
+
+    feedList.forEach(feed => {
+
+        const markup = `
+            <div class="col-12">
+                <div class="card bg-light">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="profile-image">
+                            <img class="img-fluid"
+                                src="${feed.author.image}"
+                                alt>
+                        </div>
+                        <!-- /.profile-image -->
+                        <div class="post-details ms-3">
+                            <div class="author fw-bold">
+                                ${feed.author.name}
+                            </div>
+                            <!-- /.author -->
+                            <div class="creation-date">
+                                ${feed.created}
+                            </div>
+                            <!-- /.creation-date -->
+                        </div>
+                        <!-- /.post-details -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="post-content mb-3">
+                            ${feed.content}
+                        </div>
+                        <!-- /.post-content -->
+                        <div class="post-image">
+                            <img class="img-fluid"
+                                src="${feed.media}"
+                                alt>
+                        </div>
+                        <!-- /.post-image -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div
+                            class="like-interaction d-flex justify-content-evenly align-items-center my-2">
+                            <div class="like-button text-center">
+                                <a class="btn btn-outline-primary"
+                                    href="#">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    Mi Piace
+                                </a>
+                            </div>
+                            <!-- /.like-button -->
+                            <div class="like-counter">
+                                Piace a <strong>${feed.likes}</strong> Persone
+                            </div>
+                            <!-- /.like-counter -->
+                        </div>
+                        <!-- /.like-interaction -->
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- .col -->
+        `;
+
+        DOMElement.insertAdjacentHTML('beforeend', markup);
+    })
+}
+
