@@ -85,11 +85,47 @@ const posts = [
     }
 ];
 
-
+//Definisco gli elementi di cui ho bisogno
 const feedContainer = document.querySelector('.row');
+pageRefresh(feedContainer, posts);
 
-feedGenerator(feedContainer, posts)
+/**
+ * 
+ * @param {*} feedContainer 
+ * @param {*} feedList 
+ */
+function pageRefresh(feedContainer, feedList) {
+    feedGenerator(feedContainer, feedList)
+    const likeButtonList = document.querySelectorAll('.like-button > a.btn');
+    addLike(likeButtonList);
+}
 
+/**
+ * 
+ * @param {*} likeButtonList 
+ */
+function addLike(likeButtonList) {
+
+    likeButtonList.forEach(likeButton => {
+        likeButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            console.log(this.dataset.postid);
+
+            posts.forEach(feed => {
+                if (feed.id === Number(this.dataset.postid)) {
+                    // console.log(feed.likes);
+                    feed.likes++;
+
+                    // console.log(feed.likes);
+                    feedGenerator(feedContainer, posts);
+                    likeButtonList = document.querySelectorAll('.like-button > a.btn');
+                    addLike(likeButtonList);
+                }
+            });
+        });
+    });
+}
 
 
 /**
@@ -99,6 +135,8 @@ feedGenerator(feedContainer, posts)
  * @param {Object[]} FeedList List of Social Feeds
  */
 function feedGenerator(DOMElement, feedList) {
+
+    DOMElement.innerHTML = '';
 
     feedList.forEach(feed => {
 
@@ -143,7 +181,7 @@ function feedGenerator(DOMElement, feedList) {
                             class="like-interaction d-flex justify-content-evenly align-items-center my-2">
                             <div class="like-button text-center">
                                 <a class="btn btn-outline-primary"
-                                    href="#">
+                                    data-postid="${feed.id}">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                     Mi Piace
                                 </a>
