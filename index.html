@@ -4,22 +4,101 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Social Feed</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-	<link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css">
     </head>
-    <body class="bg-dark">
-        <header id="site_header"></header> <!-- Extra -->
+    <body class="bg-secondary text-light">
+        <header id="site_header"> <!-- Extra -->
+            <h1 class="text-center my-3">Social Feed</h1>
+        </header>
         <!-- /#site_header -->
 
         <main id="site_main"> <!-- I post vanno inseriti qui -->
-
+            <div class="container w-50">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card bg-light">
+                            <div class="card-header d-flex align-items-center">
+                                <div class="profile-image">
+                                    <img class="img-fluid"
+                                        src="https://unsplash.it/300/300?image=15"
+                                        alt>
+                                </div>
+                                <!-- /.profile-image -->
+                                <div class="post-details ms-3">
+                                    <div class="author fw-bold">
+                                        Phil Mangione
+                                    </div>
+                                    <!-- /.author -->
+                                    <div class="creation-date">
+                                        2021-06-25
+                                    </div>
+                                    <!-- /.creation-date -->
+                                </div>
+                                <!-- /.post-details -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="post-content mb-3">
+                                    Placeat libero ipsa nobis ipsum quibusdam
+                                    quas harum ut. Distinctio minima iusto. Ad
+                                    ad maiores et sint voluptate recusandae
+                                    architecto. Et nihil ullam aut alias.
+                                </div>
+                                <!-- /.post-content -->
+                                <div class="post-image">
+                                    <img class="img-fluid"
+                                        src="https://unsplash.it/1000/600?image=11"
+                                        alt>
+                                </div>
+                                <!-- /.post-image -->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <div
+                                    class="like-interaction d-flex justify-content-evenly align-items-center my-2">
+                                    <div class="like-button text-center">
+                                        <a class="btn btn-outline-primary"
+                                            href="#">
+                                            <i class="fa-solid fa-thumbs-up"></i>
+                                            Mi Piace
+                                        </a>
+                                    </div>
+                                    <!-- /.like-button -->
+                                    <div class="like-counter">
+                                        Piace a <strong>80</strong> Persone
+                                    </div>
+                                    <!-- /.like-counter -->
+                                </div>
+                                <!-- /.like-interaction -->
+                            </div>
+                            <!-- /.card-footer -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
         </main>
         <!-- /#site_main -->
 
         <footer id="site_footer"></footer> <!-- Extra -->
         <!-- /#site_footer -->
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
         <script type="text/javascript" src="./assets/js/script.js"></script>
     </body>
 </html>
