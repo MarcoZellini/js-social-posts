@@ -27,6 +27,8 @@
         Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 */
 
+
+//Definisco gli elementi di cui ho bisogno
 const posts = [
     {
         "id": 1,
@@ -84,47 +86,47 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
-
-//Definisco gli elementi di cui ho bisogno
+const likedPostList = [];
 const feedContainer = document.querySelector('.row');
-pageRefresh(feedContainer, posts);
+pageRefresh(feedContainer, posts, likedPostList);
 
 /**
  * 
  * @param {*} feedContainer 
  * @param {*} feedList 
  */
-function pageRefresh(feedContainer, feedList) {
+function pageRefresh(feedContainer, feedList, likedPostList) {
     feedGenerator(feedContainer, feedList)
     const likeButtonList = document.querySelectorAll('.like-button > a.btn');
-    addLike(likeButtonList);
+    addLike(likeButtonList, feedList, likedPostList);
 }
 
 /**
  * 
  * @param {*} likeButtonList 
  */
-function addLike(likeButtonList) {
+function addLike(likeButtonList, feedList, likedPostList) {
 
     likeButtonList.forEach(likeButton => {
         likeButton.addEventListener('click', function (e) {
             e.preventDefault();
 
-            console.log(this.dataset.postid);
-
-            posts.forEach(feed => {
-                if (feed.id === Number(this.dataset.postid)) {
-                    // console.log(feed.likes);
+            feedList.forEach(feed => {
+                if (feed.id === Number(this.dataset.postid) && feed.liked != true) {
                     feed.likes++;
-
-                    // console.log(feed.likes);
-                    feedGenerator(feedContainer, posts);
-                    likeButtonList = document.querySelectorAll('.like-button > a.btn');
-                    addLike(likeButtonList);
+                    feed.liked = true;
+                    likedPostList.push(feed.id)
+                    pageRefresh(feedContainer, feedList, likedPostList);
+                } else if (feed.id === Number(this.dataset.postid) && feed.liked) {
+                    feed.likes--;
+                    feed.liked = false;
+                    likedPostList.pop(feed.id)
+                    pageRefresh(feedContainer, feedList, likedPostList);
                 }
             });
         });
     });
+    console.log(likedPostList);
 }
 
 
@@ -180,7 +182,7 @@ function feedGenerator(DOMElement, feedList) {
                         <div
                             class="like-interaction d-flex justify-content-evenly align-items-center my-2">
                             <div class="like-button text-center">
-                                <a class="btn btn-outline-primary"
+                                <a class="btn ${feed.liked ? 'btn-primary' : 'btn-outline-primary'}"
                                     data-postid="${feed.id}">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                     Mi Piace
