@@ -126,7 +126,6 @@ function addLike(likeButtonList, feedList, likedPostList) {
             });
         });
     });
-    console.log(likedPostList);
 }
 
 
@@ -148,7 +147,7 @@ function feedGenerator(DOMElement, feedList) {
                     <div class="card-header d-flex align-items-center">
                         <div class="profile-image">
                             <img class="img-fluid"
-                                src="${feed.author.image}"
+                                src="${feed.author.image !== null ? feed.author.image : 'https://unsplash.it/300/300?image=1'}"
                                 alt>
                         </div>
                         <!-- /.profile-image -->
